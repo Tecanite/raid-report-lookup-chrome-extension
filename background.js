@@ -1,12 +1,12 @@
 chrome.runtime.onInstalled.addListener(function() {
     chrome.contextMenus.create({
-        "title": 'Raid Report (Link)',
+        "title": 'Raid Report',
         "contexts": ["link"],
         "id": "raid_link",
         "documentUrlPatterns": ["*://*.bungie.net/en/ClanV2/PublicFireteam?*"]
     });
     chrome.contextMenus.create({
-        "title": 'Dungeon Report (Link)',
+        "title": 'Dungeon Report',
         "contexts": ["link"],
         "id": "dungeon_link",
         "documentUrlPatterns": ["*://*.bungie.net/en/ClanV2/PublicFireteam?*"]
@@ -24,13 +24,15 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
         str = str.replace(char1 +'/', '');
         if (info.menuItemId === "dungeon_link"){
             chrome.tabs.create({  
-                url: "https://dungeon.report/pc/" + encodeURIComponent(str)
+                url: "https://dungeon.report/pc/" + encodeURIComponent(str),
+                active: false
             });
         }
         if (info.menuItemId === "raid_link") {
 
             chrome.tabs.create({  
-                url: "https://raid.report/pc/" + encodeURIComponent(str)
+                url: "https://raid.report/pc/" + encodeURIComponent(str),
+                active: false
             });
         }
     } 
