@@ -20,6 +20,8 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
             finalUrl = finalUrl + "xb/"
         } else if (char1 === "2") {
             finalUrl = finalUrl + "ps/"
+        } else if (char1 === "6") {
+            finalUrl = finalUrl + "epic/"
         } else {
             finalUrl = finalUrl + "pc/"
         }
