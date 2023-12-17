@@ -3,29 +3,26 @@ chrome.runtime.onInstalled.addListener(function () {
         "title": 'Dungeon Report',
         "contexts": ["link"],
         "id": "dungeon_link",
-        "documentUrlPatterns": ["*://*.bungie.net/7/en/Fireteams/*"]
+        "documentUrlPatterns": ["*://*.bungie.net/7/*/Fireteams/*"]
     });
 });
 
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
     if (tab) {
-        var str = info.linkUrl,
-            rmv = "https://www.bungie.net/7/en/User/Profile/"
-        str = str.replace(rmv, '')
-        var char1 = str.charAt(0)
-        str = str.replace(char1 + '/', '')
+        var str = info.linkUrl
+        frags = str.split('/')
 
         var finalUrl = "https://dungeon.report/"
-        if (char1 === "1") {
+        if (frags[7] === "1") {
             finalUrl = finalUrl + "xb/"
-        } else if (char1 === "2") {
+        } else if (frags[7] === "2") {
             finalUrl = finalUrl + "ps/"
-        } else if (char1 === "6") {
+        } else if (frags[7] === "6") {
             finalUrl = finalUrl + "epic/"
         } else {
             finalUrl = finalUrl + "pc/"
         }
-        finalUrl = finalUrl + str
+        finalUrl = finalUrl + frags[8]
 
         chrome.tabs.create({
             url: finalUrl,
