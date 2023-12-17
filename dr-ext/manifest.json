@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Dungeon Report Viewer",
     "description": "Enables Quick Access to a players Dungeon Report on Bungie LFG.",
-    "version": "0.1",
+    "version": "0.2.1",
     
     "permissions": ["contextMenus","tabs"],
     "icons": {
