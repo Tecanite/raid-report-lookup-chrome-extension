@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - '*'
+permissions:
+  contents: write
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -11,20 +13,15 @@ jobs:
       - name: Create dr-ext Archive Release
         uses: thedoctor0/zip-release@master
         with:
-          directory: ./dr-ext
+          path: ./dr-ext
           filename: 'dr-ext.zip'
       - name: Create rr-ext Archive Release
         uses: thedoctor0/zip-release@master
         with:
-            directory: ./rr-ext
+            path: ./rr-ext
             filename: 'rr-ext.zip'
       - name: Upload dr-ext Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'dr-ext.zip'
+          artifacts: 'dr-ext.zip, rr-ext.zip'
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload rr-ext Release
-        uses: ncipollo/release-action@v1
-        with:
-            artifacts: 'rr-ext.zip'
-            token: ${{ secrets.GITHUB_TOKEN }}
